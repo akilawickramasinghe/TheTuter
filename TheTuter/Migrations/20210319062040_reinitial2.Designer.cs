@@ -10,14 +10,14 @@ using TheTuter.Data;
 namespace TheTuter.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20210310095027_Courses Added1")]
-    partial class CoursesAdded1
+    [Migration("20210319062040_reinitial2")]
+    partial class reinitial2
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "3.1.4")
+                .HasAnnotation("ProductVersion", "3.1.13")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
@@ -42,15 +42,29 @@ namespace TheTuter.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "015ce3d4-bd7f-43c3-83e2-47653cd23551",
-                            ConcurrencyStamp = "6c2ee439-464c-4f0c-801b-fbdd0fc64fcf",
+                            Id = "24ae9a4b-8b41-46b6-8422-400ae86f23a3",
+                            ConcurrencyStamp = "99941bd2-6d97-46d3-a5e4-dce03d2a5a7b",
                             Name = "Visitor",
                             NormalizedName = "VISITOR"
                         },
                         new
                         {
-                            Id = "311643df-7a17-471c-8ad2-51bbd86c3ded",
-                            ConcurrencyStamp = "36360c8e-ac8a-466e-879e-5d87c45a1a4c",
+                            Id = "d4ac5368-c4c1-4d04-82a2-9cbf59012fbd",
+                            ConcurrencyStamp = "4e0d9df3-af3a-4cd8-9882-692d17d74c47",
+                            Name = "Teacher",
+                            NormalizedName = "TEACHER"
+                        },
+                        new
+                        {
+                            Id = "c5058b64-cc05-4e55-869b-885160e93292",
+                            ConcurrencyStamp = "73dce6f8-75d5-4606-81cf-2fa035fc8203",
+                            Name = "Student",
+                            NormalizedName = "STUDENT"
+                        },
+                        new
+                        {
+                            Id = "45b9141c-6b7f-4461-bc30-5d288b865dea",
+                            ConcurrencyStamp = "47bfe8cb-beaf-448a-93fb-975587460d58",
                             Name = "Administrator",
                             NormalizedName = "ADMINISTRATOR"
                         });
@@ -84,7 +98,34 @@ namespace TheTuter.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Courses");
+                    b.ToTable("Course");
+                });
+
+            modelBuilder.Entity("TheTuter.Models.CourseStudent", b =>
+                {
+                    b.Property<int>("CourseId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("StudentId")
+                        .HasColumnType("int");
+
+                    b.HasKey("CourseId", "StudentId");
+
+                    b.HasIndex("StudentId");
+
+                    b.ToTable("CourseStudents");
+                });
+
+            modelBuilder.Entity("TheTuter.Models.Student", b =>
+                {
+                    b.Property<int>("sId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.HasKey("sId");
+
+                    b.ToTable("Students");
                 });
 
             modelBuilder.Entity("TheTuter.Models.User", b =>
@@ -98,6 +139,10 @@ namespace TheTuter.Migrations
                     b.Property<string>("ConcurrencyStamp")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("Discriminator")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Email")
                         .HasColumnType("nvarchar(max)");
 
@@ -106,6 +151,9 @@ namespace TheTuter.Migrations
 
                     b.Property<string>("FirstName")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsStudent")
+                        .HasColumnType("bit");
 
                     b.Property<string>("LastName")
                         .HasColumnType("nvarchar(max)");
@@ -143,6 +191,47 @@ namespace TheTuter.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Users");
+
+                    b.HasDiscriminator<string>("Discriminator").HasValue("User");
+                });
+
+            modelBuilder.Entity("TheTuter.Models.Teacher", b =>
+                {
+                    b.HasBaseType("TheTuter.Models.User");
+
+                    b.Property<int>("CourseId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("tId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasIndex("CourseId");
+
+                    b.HasDiscriminator().HasValue("Teacher");
+                });
+
+            modelBuilder.Entity("TheTuter.Models.CourseStudent", b =>
+                {
+                    b.HasOne("TheTuter.Models.Course", "Course")
+                        .WithMany("Students")
+                        .HasForeignKey("CourseId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("TheTuter.Models.Student", "Student")
+                        .WithMany("Course")
+                        .HasForeignKey("StudentId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("TheTuter.Models.Teacher", b =>
+                {
+                    b.HasOne("TheTuter.Models.Course", "Course")
+                        .WithMany("Teachers")
+                        .HasForeignKey("CourseId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }

@@ -40,29 +40,29 @@ namespace TheTuter.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "2944ca19-5f2c-44f0-a978-c590f50356f3",
-                            ConcurrencyStamp = "361e147b-4951-4d52-bca9-23a4ece76c28",
+                            Id = "24ae9a4b-8b41-46b6-8422-400ae86f23a3",
+                            ConcurrencyStamp = "99941bd2-6d97-46d3-a5e4-dce03d2a5a7b",
                             Name = "Visitor",
                             NormalizedName = "VISITOR"
                         },
                         new
                         {
-                            Id = "a35cf118-b5bd-4897-961f-7209b1ea60d9",
-                            ConcurrencyStamp = "e34dc3e3-4553-4f96-b554-96e57683d19b",
+                            Id = "d4ac5368-c4c1-4d04-82a2-9cbf59012fbd",
+                            ConcurrencyStamp = "4e0d9df3-af3a-4cd8-9882-692d17d74c47",
                             Name = "Teacher",
                             NormalizedName = "TEACHER"
                         },
                         new
                         {
-                            Id = "2abfc9dd-250d-41d3-b2d6-176590c58f0c",
-                            ConcurrencyStamp = "48c0ff67-a49c-4bed-87fa-32576c2a9f61",
+                            Id = "c5058b64-cc05-4e55-869b-885160e93292",
+                            ConcurrencyStamp = "73dce6f8-75d5-4606-81cf-2fa035fc8203",
                             Name = "Student",
                             NormalizedName = "STUDENT"
                         },
                         new
                         {
-                            Id = "e9b6b99d-add0-49fe-aba6-cf1ba2fa5496",
-                            ConcurrencyStamp = "d34ed73e-971b-4ddc-b40b-2a5fc3634c8b",
+                            Id = "45b9141c-6b7f-4461-bc30-5d288b865dea",
+                            ConcurrencyStamp = "47bfe8cb-beaf-448a-93fb-975587460d58",
                             Name = "Administrator",
                             NormalizedName = "ADMINISTRATOR"
                         });
@@ -96,7 +96,34 @@ namespace TheTuter.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Courses");
+                    b.ToTable("Course");
+                });
+
+            modelBuilder.Entity("TheTuter.Models.CourseStudent", b =>
+                {
+                    b.Property<int>("CourseId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("StudentId")
+                        .HasColumnType("int");
+
+                    b.HasKey("CourseId", "StudentId");
+
+                    b.HasIndex("StudentId");
+
+                    b.ToTable("CourseStudents");
+                });
+
+            modelBuilder.Entity("TheTuter.Models.Student", b =>
+                {
+                    b.Property<int>("sId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.HasKey("sId");
+
+                    b.ToTable("Students");
                 });
 
             modelBuilder.Entity("TheTuter.Models.User", b =>
@@ -108,6 +135,10 @@ namespace TheTuter.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("ConcurrencyStamp")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Discriminator")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Email")
@@ -158,6 +189,47 @@ namespace TheTuter.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Users");
+
+                    b.HasDiscriminator<string>("Discriminator").HasValue("User");
+                });
+
+            modelBuilder.Entity("TheTuter.Models.Teacher", b =>
+                {
+                    b.HasBaseType("TheTuter.Models.User");
+
+                    b.Property<int>("CourseId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("tId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasIndex("CourseId");
+
+                    b.HasDiscriminator().HasValue("Teacher");
+                });
+
+            modelBuilder.Entity("TheTuter.Models.CourseStudent", b =>
+                {
+                    b.HasOne("TheTuter.Models.Course", "Course")
+                        .WithMany("Students")
+                        .HasForeignKey("CourseId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("TheTuter.Models.Student", "Student")
+                        .WithMany("Course")
+                        .HasForeignKey("StudentId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("TheTuter.Models.Teacher", b =>
+                {
+                    b.HasOne("TheTuter.Models.Course", "Course")
+                        .WithMany("Teachers")
+                        .HasForeignKey("CourseId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }

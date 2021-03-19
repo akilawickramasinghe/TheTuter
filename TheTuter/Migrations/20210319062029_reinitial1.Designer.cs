@@ -10,8 +10,8 @@ using TheTuter.Data;
 namespace TheTuter.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20210310120027_Models added")]
-    partial class Modelsadded
+    [Migration("20210319062029_reinitial1")]
+    partial class reinitial1
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -42,29 +42,29 @@ namespace TheTuter.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "1da84882-ca71-458f-aa7c-8a8c1d83406a",
-                            ConcurrencyStamp = "6dbfbd4b-cbdb-412c-8450-5aad6b6bbd08",
+                            Id = "9bdc88a2-a35b-4b36-98e8-36362a0e9325",
+                            ConcurrencyStamp = "499b44f5-976a-4fb4-937f-958f3ced59ff",
                             Name = "Visitor",
                             NormalizedName = "VISITOR"
                         },
                         new
                         {
-                            Id = "f9ccc546-3e40-49e9-92f8-d6f9e540a6fe",
-                            ConcurrencyStamp = "09b2b3dd-5d48-4bb2-aad9-18544302e06e",
+                            Id = "9e2ab56e-04e7-4c5b-a3a3-e690c0bc69e0",
+                            ConcurrencyStamp = "af012e3f-7c5e-412b-919b-027f62436a59",
                             Name = "Teacher",
                             NormalizedName = "TEACHER"
                         },
                         new
                         {
-                            Id = "aba63205-098c-4594-8aeb-ee8b70371512",
-                            ConcurrencyStamp = "48ec0915-f01c-4f47-99e6-6135e4fc1e06",
+                            Id = "467c1e91-55d3-4e44-a9fd-5cbf16a4b6ca",
+                            ConcurrencyStamp = "f7528fe8-2b1e-4cf2-a29a-f08d3d4a73b9",
                             Name = "Student",
                             NormalizedName = "STUDENT"
                         },
                         new
                         {
-                            Id = "df4b2546-6818-4e22-87e6-671ded14f610",
-                            ConcurrencyStamp = "07aa9511-25d1-4f76-b29e-f76cf7b1c86f",
+                            Id = "872596ae-66a6-4dcb-84cf-41d7169cf099",
+                            ConcurrencyStamp = "f5c8de18-a876-4b8d-8228-146fa5c35cf9",
                             Name = "Administrator",
                             NormalizedName = "ADMINISTRATOR"
                         });
@@ -98,7 +98,34 @@ namespace TheTuter.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Courses");
+                    b.ToTable("Course");
+                });
+
+            modelBuilder.Entity("TheTuter.Models.CourseStudent", b =>
+                {
+                    b.Property<int>("CourseId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("StudentId")
+                        .HasColumnType("int");
+
+                    b.HasKey("CourseId", "StudentId");
+
+                    b.HasIndex("StudentId");
+
+                    b.ToTable("CourseStudents");
+                });
+
+            modelBuilder.Entity("TheTuter.Models.Student", b =>
+                {
+                    b.Property<int>("sId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.HasKey("sId");
+
+                    b.ToTable("Students");
                 });
 
             modelBuilder.Entity("TheTuter.Models.User", b =>
@@ -112,6 +139,10 @@ namespace TheTuter.Migrations
                     b.Property<string>("ConcurrencyStamp")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("Discriminator")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Email")
                         .HasColumnType("nvarchar(max)");
 
@@ -120,6 +151,9 @@ namespace TheTuter.Migrations
 
                     b.Property<string>("FirstName")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsStudent")
+                        .HasColumnType("bit");
 
                     b.Property<string>("LastName")
                         .HasColumnType("nvarchar(max)");
@@ -157,6 +191,47 @@ namespace TheTuter.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Users");
+
+                    b.HasDiscriminator<string>("Discriminator").HasValue("User");
+                });
+
+            modelBuilder.Entity("TheTuter.Models.Teacher", b =>
+                {
+                    b.HasBaseType("TheTuter.Models.User");
+
+                    b.Property<int>("CourseId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("tId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasIndex("CourseId");
+
+                    b.HasDiscriminator().HasValue("Teacher");
+                });
+
+            modelBuilder.Entity("TheTuter.Models.CourseStudent", b =>
+                {
+                    b.HasOne("TheTuter.Models.Course", "Course")
+                        .WithMany("Students")
+                        .HasForeignKey("CourseId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("TheTuter.Models.Student", "Student")
+                        .WithMany("Course")
+                        .HasForeignKey("StudentId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("TheTuter.Models.Teacher", b =>
+                {
+                    b.HasOne("TheTuter.Models.Course", "Course")
+                        .WithMany("Teachers")
+                        .HasForeignKey("CourseId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }
