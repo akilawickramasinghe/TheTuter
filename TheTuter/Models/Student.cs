@@ -9,10 +9,10 @@ namespace TheTuter.Models
 {
     public class Student 
     {
-
         [Key]
         public int sId { get; set; }
-
+        public string Name { get; set; }
+       // public EmailAddressAttribute sEmail { get; set; }
         public ICollection<CourseStudent> Course { get; set; }
     }
 }
