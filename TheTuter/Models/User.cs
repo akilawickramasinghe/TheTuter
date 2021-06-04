@@ -10,6 +10,9 @@ namespace TheTuter.Models
     { 
         public string FirstName { get; set; } 
         public string LastName { get; set; }
-        public bool IsStudent { get; set; }
+        public string Address { get; set; }
+        public string Subject { get; set; }
+        public decimal Price { get; set; }
+        public string Role { get; set; }
     }
 }

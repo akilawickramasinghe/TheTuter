@@ -1,6 +1,8 @@
-﻿namespace TheTuter.Controllers
+using System;
+
+namespace TheTuter.Models
 {
-    internal class ErrorViewModel
+    public class ErrorViewModel
     {
         public string RequestId { get; set; }
 

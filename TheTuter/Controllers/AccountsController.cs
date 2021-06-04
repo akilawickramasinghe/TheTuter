@@ -11,6 +11,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
+using Microsoft.AspNetCore.Http;
 
 namespace TheTuter.Controllers
 {
@@ -37,44 +38,59 @@ namespace TheTuter.Controllers
         }
 
 
-
-
         [HttpPost("Register")]
         public async Task<ActionResult> Register(UserRegistrationModel userModel)
         {
-            var user = _mapper.Map<User>(userModel);
+            //var user = _mapper.Map<User>(userModel);
+            var user = new User();
+            user.FirstName = userModel.FirstName;
+            user.LastName = userModel.LastName;
+            user.Email = userModel.Email;
+            user.PhoneNumber = userModel.PhoneNumber;
+            user.Role = userModel.Role;
+            user.UserName = userModel.Email;
+            if (userModel.Price !=null) {
+               user.Price = decimal.Parse(userModel.Price);
+            }
+            if (userModel.Subject != null)
+            {
+               user.Subject = userModel.Subject;
+            }
+            user.Address = userModel.Address;
+
             var result = await _userManager.CreateAsync(user, userModel.Password);
+            HttpContext.Session.SetString("UserId", user.Id.ToString());
             if (!result.Succeeded)
             {
                 return Ok(result.Errors);
             }
-            if(userModel.IsStudent)
+            if(userModel.Role == "Student")
             {
                await _userManager.AddToRoleAsync(user, "Student");
+                return StatusCode(200);
             }
-            await _userManager.AddToRoleAsync(user, "Teacher");
-            //await _userManager.AddToRoleAsync(user, "Visitor");
-
-            return StatusCode(201);
+            else
+            {
+                await _userManager.AddToRoleAsync(user, "Teacher");
+                //await _userManager.AddToRoleAsync(user, "Visitor");
+                return StatusCode(200);
+            }
+        
         }
-
-
-
 
         [HttpPost("Login")]
         public async Task<IActionResult> Login(UserLoginModel userModel)
         {
-            var user = await _userManager.FindByEmailAsync(userModel.Email);
-
+            var user = await _userManager.FindByEmailAsync(userModel.Email); 
             if (user != null && await _userManager.CheckPasswordAsync(user, userModel.Password))
             {
                 var signingCredentials = GetSigningCredentials();
                 var claims = GetClaims(user);
                 var tokenOptions = GenerateTokenOptions(signingCredentials, await claims);
                 var token = new JwtSecurityTokenHandler().WriteToken(tokenOptions);
-                return Ok(token);
+                return Ok(user);
             }
-            return Unauthorized("Invalid Authentication");
+            return Ok("EmailPasswordIncorrect");
 
         }
 

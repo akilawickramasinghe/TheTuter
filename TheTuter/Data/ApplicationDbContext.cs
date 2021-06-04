@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -8,7 +9,7 @@ using TheTuter.Models;
 
 namespace TheTuter.Data
 {
-    public class ApplicationDbContext : DbContext 
+    public class ApplicationDbContext : IdentityDbContext<User>
     { 
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) 
             : base(options) 
@@ -19,26 +20,13 @@ namespace TheTuter.Data
             base.OnModelCreating(modelBuilder); 
             modelBuilder.ApplyConfiguration(new RoleConfiguration()); 
             modelBuilder.Entity<IdentityUserRole<string>>().HasKey(p => new { p.UserId, p.RoleId });
+        }
 
-            modelBuilder.Entity<CourseStudent>()
-                .HasKey(Cs => new {Cs.CourseId,Cs.StudentId });
-
-            modelBuilder.Entity<CourseStudent>()
-                .HasOne(Cs => Cs.Course)
-                .WithMany(Cs=>Cs.Students)
-                .HasForeignKey(Cs => Cs.CourseId);
-            modelBuilder.Entity<CourseStudent>()
-                .HasOne(Cs => Cs.Student)
-                .WithMany(Cs => Cs.Course)
-                .HasForeignKey(Cs => Cs.StudentId);
-          
-
-        } 
-        public DbSet<User> Users { get; set; }
-        public DbSet<Course> Course { get; set; }
-        public DbSet<Student> Students { get; set; }
-        public DbSet<Teacher> Teachers { get; set; }
-        public DbSet<CourseStudent> CourseStudents { get; set; }
+        //public DbSet<User> Users { get; set; }
+        public DbSet<Course> Courses { get; set; }
+        public DbSet<UploadLecture> Lectures { get; set; }
+        public DbSet<UploadQuizes> Quizes { get; set; }
+        public DbSet<PaymentInformation> StudentPaymentInfos { get; set; }
     }
   
 }
