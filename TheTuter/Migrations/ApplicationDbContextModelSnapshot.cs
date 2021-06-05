@@ -48,31 +48,31 @@ namespace TheTuter.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "26b6244f-dfb8-4e26-b444-98911cbe361e",
-                            ConcurrencyStamp = "8769ba36-4512-43c6-990a-6c5eceef7c08",
+                            Id = "d2de4e54-4846-46e8-90fc-1a38b394e62c",
+                            ConcurrencyStamp = "d43ce294-b5dc-4b05-bbb0-64bc60cb3a65",
+                            Name = "Administrator",
+                            NormalizedName = "ADMINISTRATOR"
+                        },
+                        new
+                        {
+                            Id = "437367a4-c255-4ddd-83d6-b860f8ac35fd",
+                            ConcurrencyStamp = "138199a4-a8f2-4509-80f3-03a67ec5094f",
                             Name = "Visitor",
                             NormalizedName = "VISITOR"
                         },
                         new
                         {
-                            Id = "da77dc76-f106-4cdb-bee3-bbfdfc1da284",
-                            ConcurrencyStamp = "ce0b4f0c-1f4d-4a05-a519-e79dec23d4c0",
+                            Id = "533f9cc8-b784-4fc2-955f-ab286e14f8a7",
+                            ConcurrencyStamp = "64f7da82-6589-45e9-b704-a59cfb2f5f78",
                             Name = "Teacher",
                             NormalizedName = "TEACHER"
                         },
                         new
                         {
-                            Id = "65a63c3a-71fc-4498-b51d-31d0d7153a65",
-                            ConcurrencyStamp = "13073815-93d7-4f07-8ffd-abbef9b69736",
+                            Id = "0c5a8c12-cdf2-40ef-b89f-f5238e5490f3",
+                            ConcurrencyStamp = "270e990e-f16d-4edf-a51d-2909687bc7f4",
                             Name = "Student",
                             NormalizedName = "STUDENT"
-                        },
-                        new
-                        {
-                            Id = "ff6bf0d8-2293-48a2-82bb-48f7298a52b3",
-                            ConcurrencyStamp = "82c65b28-8fe5-4e22-854f-359e6b0509b7",
-                            Name = "Administrator",
-                            NormalizedName = "ADMINISTRATOR"
                         });
                 });
 

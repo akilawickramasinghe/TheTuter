@@ -2,39 +2,39 @@
 
 namespace TheTuter.Migrations
 {
-    public partial class reinitialfinal1 : Migration
+    public partial class publishtry1 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DeleteData(
                 table: "AspNetRoles",
                 keyColumn: "Id",
-                keyValue: "2b675902-fe3e-47a1-87a2-4c711a9a0f76");
+                keyValue: "089442a2-befd-4d55-a9ed-3016d11409c6");
 
             migrationBuilder.DeleteData(
                 table: "AspNetRoles",
                 keyColumn: "Id",
-                keyValue: "4b4e8ca3-6166-4d17-905b-20926b710ebb");
+                keyValue: "219ecb8c-8404-47ae-b57a-c5047b9dc360");
 
             migrationBuilder.DeleteData(
                 table: "AspNetRoles",
                 keyColumn: "Id",
-                keyValue: "d39a1bce-9ca1-4318-86d2-f24d2ee9e81d");
+                keyValue: "82bec2bf-360f-420f-896e-87a91dea6e40");
 
             migrationBuilder.DeleteData(
                 table: "AspNetRoles",
                 keyColumn: "Id",
-                keyValue: "e98abe99-91dc-470b-b43b-a1fd7db37c19");
+                keyValue: "98ca5d76-847c-4084-8692-8c5c690df3b2");
 
             migrationBuilder.InsertData(
                 table: "AspNetRoles",
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
                 values: new object[,]
                 {
-                    { "cb4a6822-f4d7-4d28-b8d3-3587383cb69c", "384b3101-6107-4559-903f-60fea32131e2", "Visitor", "VISITOR" },
-                    { "3e0e17e2-7587-4093-8cb2-d723fd4740b4", "10b93c43-61ac-43e3-b329-fa1936a2e3f5", "Teacher", "TEACHER" },
-                    { "fe1433e2-c761-4fef-8649-fb12f9b613ac", "cd3a8f74-7c9d-4883-a90d-d02f025c5e10", "Student", "STUDENT" },
-                    { "d4102ca0-1a5e-4c91-943f-d953f1416696", "a0033661-af46-49a2-a6c7-b74c34a9c5ee", "Administrator", "ADMINISTRATOR" }
+                    { "b6e80e26-57f1-45bc-be86-705ad31d545f", "86ce49de-ed75-4a04-8969-8814fca2b108", "Visitor", "VISITOR" },
+                    { "e599506d-db93-4548-a33f-3530c574b6cb", "332510f6-2abb-4a4f-ae2c-972c033d00bd", "Teacher", "TEACHER" },
+                    { "774100cd-1ff4-43ba-a8c7-802c2c898d9a", "8d88862f-c0e8-4fc4-b45a-64a24d24a75e", "Student", "STUDENT" },
+                    { "ffb7cec5-a5b1-47f5-9347-18a0a300bded", "796e3ae3-28d5-4c33-9a68-7ca2a24a8cf3", "Administrator", "ADMINISTRATOR" }
                 });
         }
 
@@ -43,32 +43,32 @@ namespace TheTuter.Migrations
             migrationBuilder.DeleteData(
                 table: "AspNetRoles",
                 keyColumn: "Id",
-                keyValue: "3e0e17e2-7587-4093-8cb2-d723fd4740b4");
+                keyValue: "774100cd-1ff4-43ba-a8c7-802c2c898d9a");
 
             migrationBuilder.DeleteData(
                 table: "AspNetRoles",
                 keyColumn: "Id",
-                keyValue: "cb4a6822-f4d7-4d28-b8d3-3587383cb69c");
+                keyValue: "b6e80e26-57f1-45bc-be86-705ad31d545f");
 
             migrationBuilder.DeleteData(
                 table: "AspNetRoles",
                 keyColumn: "Id",
-                keyValue: "d4102ca0-1a5e-4c91-943f-d953f1416696");
+                keyValue: "e599506d-db93-4548-a33f-3530c574b6cb");
 
             migrationBuilder.DeleteData(
                 table: "AspNetRoles",
                 keyColumn: "Id",
-                keyValue: "fe1433e2-c761-4fef-8649-fb12f9b613ac");
+                keyValue: "ffb7cec5-a5b1-47f5-9347-18a0a300bded");
 
             migrationBuilder.InsertData(
                 table: "AspNetRoles",
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
                 values: new object[,]
                 {
-                    { "2b675902-fe3e-47a1-87a2-4c711a9a0f76", "0532478a-9144-44aa-8c3d-f1db2e31a8a0", "Visitor", "VISITOR" },
-                    { "d39a1bce-9ca1-4318-86d2-f24d2ee9e81d", "30148a56-056b-4f21-b238-02499eb16836", "Teacher", "TEACHER" },
-                    { "4b4e8ca3-6166-4d17-905b-20926b710ebb", "4017cafa-6361-479c-9c8d-1768fbf266c1", "Student", "STUDENT" },
-                    { "e98abe99-91dc-470b-b43b-a1fd7db37c19", "8eae5d0d-47e3-4911-acf5-8bcc5eb602b0", "Administrator", "ADMINISTRATOR" }
+                    { "219ecb8c-8404-47ae-b57a-c5047b9dc360", "071bfb87-cf1f-4387-b16e-25af2e6c47a4", "Visitor", "VISITOR" },
+                    { "089442a2-befd-4d55-a9ed-3016d11409c6", "2d0d696e-e839-4ce7-a8c6-199ac7507b06", "Teacher", "TEACHER" },
+                    { "82bec2bf-360f-420f-896e-87a91dea6e40", "3b4eec47-22cf-489a-8ee8-ef4af5008a20", "Student", "STUDENT" },
+                    { "98ca5d76-847c-4084-8692-8c5c690df3b2", "8c4e1a46-3538-42da-a41b-99ce56b47f02", "Administrator", "ADMINISTRATOR" }
                 });
         }
     }

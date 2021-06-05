@@ -10,8 +10,8 @@ using TheTuter.Data;
 namespace TheTuter.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20210604145425_almost")]
-    partial class almost
+    [Migration("20210605091529_new")]
+    partial class @new
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -50,31 +50,31 @@ namespace TheTuter.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "a41353a5-96fe-4ddb-b27f-88e61c11384c",
-                            ConcurrencyStamp = "cc630c16-d55e-4427-b767-0a0c0aaf3348",
+                            Id = "d2de4e54-4846-46e8-90fc-1a38b394e62c",
+                            ConcurrencyStamp = "d43ce294-b5dc-4b05-bbb0-64bc60cb3a65",
+                            Name = "Administrator",
+                            NormalizedName = "ADMINISTRATOR"
+                        },
+                        new
+                        {
+                            Id = "437367a4-c255-4ddd-83d6-b860f8ac35fd",
+                            ConcurrencyStamp = "138199a4-a8f2-4509-80f3-03a67ec5094f",
                             Name = "Visitor",
                             NormalizedName = "VISITOR"
                         },
                         new
                         {
-                            Id = "9c80e49f-d71b-4a3e-97a8-4ad0620f4031",
-                            ConcurrencyStamp = "bb680bd3-46d0-4465-b9a4-4632c0423686",
+                            Id = "533f9cc8-b784-4fc2-955f-ab286e14f8a7",
+                            ConcurrencyStamp = "64f7da82-6589-45e9-b704-a59cfb2f5f78",
                             Name = "Teacher",
                             NormalizedName = "TEACHER"
                         },
                         new
                         {
-                            Id = "4b4e28fb-0b64-43f3-b330-d4c7a49d8c71",
-                            ConcurrencyStamp = "04e3ec53-2804-4d54-9a9a-feb44a71c660",
+                            Id = "0c5a8c12-cdf2-40ef-b89f-f5238e5490f3",
+                            ConcurrencyStamp = "270e990e-f16d-4edf-a51d-2909687bc7f4",
                             Name = "Student",
                             NormalizedName = "STUDENT"
-                        },
-                        new
-                        {
-                            Id = "71097fb9-892d-49c6-9ec8-50260a9ea56c",
-                            ConcurrencyStamp = "0220d759-80c5-4cc3-8612-27ad784943b2",
-                            Name = "Administrator",
-                            NormalizedName = "ADMINISTRATOR"
                         });
                 });
 

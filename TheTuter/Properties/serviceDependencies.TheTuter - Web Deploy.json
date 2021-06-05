@@ -1,0 +1,10 @@
+{
+  "dependencies": {
+    "mssql1": {
+      "resourceId": "/subscriptions/[parameters('subscriptionId')]/resourcegroups/[parameters('resourceGroupName')]/providers/Microsoft.Sql/servers/thetuterdbserver/databases/TheTuter_db",
+      "type": "mssql.azure",
+      "connectionId": "ApplicationDbContext",
+      "secretStore": "AzureAppSettings"
+    }
+  }
+}
