@@ -36,7 +36,7 @@ namespace TheTuter
             services.AddSession();
             services.AddDbContext<ApplicationDbContext>(opt =>
             opt.UseSqlServer(Configuration.GetConnectionString("ApplicationDbContext")));
-
+            services.AddSwaggerGen();
             services.AddIdentity<User, IdentityRole>
                 ().AddEntityFrameworkStores<ApplicationDbContext>();
             services.Configure<IdentityOptions>(options =>
@@ -80,6 +80,11 @@ namespace TheTuter
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            app.UseSwagger();
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "The Tutor API");
+            });
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -102,6 +107,8 @@ namespace TheTuter
             app.UseStaticFiles();
             app.UseSession();
             app.UseRouting();
+            app.UseDefaultFiles();
+            app.UseStaticFiles();
             // Required for Authentication.
             app.UseAuthentication();
             app.UseAuthorization();
@@ -111,6 +118,7 @@ namespace TheTuter
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
+                endpoints.MapFallbackToController("Index", "Fallback");
             });
         }
     }
