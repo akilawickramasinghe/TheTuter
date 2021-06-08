@@ -1,0 +1,40 @@
+{
+  "files": {
+    "main.css": "/static/css/main.29fedf9d.chunk.css",
+    "main.js": "/static/js/main.73612403.chunk.js",
+    "main.js.map": "/static/js/main.73612403.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.ff7a2338.js",
+    "runtime-main.js.map": "/static/js/runtime-main.ff7a2338.js.map",
+    "static/js/2.e3cac532.chunk.js": "/static/js/2.e3cac532.chunk.js",
+    "static/js/2.e3cac532.chunk.js.map": "/static/js/2.e3cac532.chunk.js.map",
+    "static/js/3.a99a063b.chunk.js": "/static/js/3.a99a063b.chunk.js",
+    "static/js/3.a99a063b.chunk.js.map": "/static/js/3.a99a063b.chunk.js.map",
+    "index.html": "/index.html",
+    "static/css/main.29fedf9d.chunk.css.map": "/static/css/main.29fedf9d.chunk.css.map",
+    "static/js/2.e3cac532.chunk.js.LICENSE.txt": "/static/js/2.e3cac532.chunk.js.LICENSE.txt",
+    "static/media/a.79c169aa.jpg": "/static/media/a.79c169aa.jpg",
+    "static/media/c.df0dc4a8.jpg": "/static/media/c.df0dc4a8.jpg",
+    "static/media/c1.561cfb95.png": "/static/media/c1.561cfb95.png",
+    "static/media/c2.7d7bfd93.png": "/static/media/c2.7d7bfd93.png",
+    "static/media/c3.3716b12e.png": "/static/media/c3.3716b12e.png",
+    "static/media/c4.2ce2c377.png": "/static/media/c4.2ce2c377.png",
+    "static/media/c5.efa795f5.png": "/static/media/c5.efa795f5.png",
+    "static/media/c6.f2f8a3f3.png": "/static/media/c6.f2f8a3f3.png",
+    "static/media/e.314eea4d.jpg": "/static/media/e.314eea4d.jpg",
+    "static/media/AccTCR.css": "/static/media/g.b616d346.jpg",
+    "static/media/j.82666834.jpg": "/static/media/j.82666834.jpg",
+    "static/media/About.css": "/static/media/k.d8726737.jpg",
+    "static/media/logo.59e389a2.png": "/static/media/logo.59e389a2.png",
+    "static/media/q.22c31152.png": "/static/media/q.22c31152.png",
+    "static/media/q.96d1748f.jpg": "/static/media/q.96d1748f.jpg",
+    "static/media/student02.1124e56c.jpg": "/static/media/student02.1124e56c.jpg",
+    "static/media/w.2f888185.jpg": "/static/media/w.2f888185.jpg",
+    "static/media/zz.be250b2a.jpg": "/static/media/zz.be250b2a.jpg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.ff7a2338.js",
+    "static/js/2.e3cac532.chunk.js",
+    "static/css/main.29fedf9d.chunk.css",
+    "static/js/main.73612403.chunk.js"
+  ]
+}

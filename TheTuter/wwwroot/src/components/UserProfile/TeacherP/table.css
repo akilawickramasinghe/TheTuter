@@ -1,0 +1,49 @@
+@import url("https://fonts.googleapis.com/css2?family=Quicksand:wght@500&display=swap");
+
+.body {
+  font-family: "Quicksand", sans-serif;
+  justify-content: center;
+  padding: 0;
+  color: #4d4d4d;
+
+}
+
+#courses {
+  border-collapse: collapse;
+  /*border: 1px solid #ddd;*/
+  border-radius: 40px;
+  max-height:50px;
+}
+
+#courses td,
+#courses th {
+  border: 1px solid #ddd;
+  padding: 12px;
+
+}
+
+#courses tr:hover {
+  background-color: #ddd;
+}
+
+#courses th {
+  padding: 10px;
+  text-align: center;
+  background-color: #4d33e4;
+  color: white;
+  border: blue;
+  
+}
+
+.opration {
+  text-align: center;
+}
+
+
+.tableFixHead          { 
+  overflow-y: auto; height: 480px; 
+}
+.tableFixHead thead th { 
+  position: sticky; top: 0; 
+  z-index: 10000 !important;
+}

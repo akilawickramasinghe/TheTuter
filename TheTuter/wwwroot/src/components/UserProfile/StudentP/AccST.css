@@ -1,0 +1,35 @@
+.Logo{
+  
+  width: 66px;
+  height: 60px;
+  margin-top: 2px;
+  margin-bottom: 2px;
+  margin-right: -20px;
+  margin-left: 10px;
+}
+
+.background{
+  
+  background-image: url(../../../images/g.jpg);
+  position: relative;
+  min-width: 100%;
+  min-height: 100%;
+  background-size: cover;
+  background-position: center;
+}
+
+.username{
+  text-align: center;
+  font-size: 15px;
+
+}
+
+.avatar{
+ margin-left: 45px; 
+}
+
+.allborder{
+  border-width: 5px;
+  border-color: blue;
+}
+

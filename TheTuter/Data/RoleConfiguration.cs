@@ -11,11 +11,6 @@ namespace TheTuter.Data
             builder.HasData(
                 new IdentityRole
                 {
-                    Name = "Administrator",
-                    NormalizedName = "ADMINISTRATOR"
-                },
-                new IdentityRole
-                {
                     Name = "Visitor",
                     NormalizedName = "VISITOR"
                 },
@@ -28,6 +23,11 @@ namespace TheTuter.Data
                 {
                     Name = "Student",
                     NormalizedName = "STUDENT"
+                },
+                new IdentityRole
+                {
+                    Name = "Administrator",
+                    NormalizedName = "ADMINISTRATOR"
                 });
         }
     }

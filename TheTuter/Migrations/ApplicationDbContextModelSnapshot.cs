@@ -48,31 +48,31 @@ namespace TheTuter.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "d2de4e54-4846-46e8-90fc-1a38b394e62c",
-                            ConcurrencyStamp = "d43ce294-b5dc-4b05-bbb0-64bc60cb3a65",
-                            Name = "Administrator",
-                            NormalizedName = "ADMINISTRATOR"
-                        },
-                        new
-                        {
-                            Id = "437367a4-c255-4ddd-83d6-b860f8ac35fd",
-                            ConcurrencyStamp = "138199a4-a8f2-4509-80f3-03a67ec5094f",
+                            Id = "81602439-26b0-4e25-8ed5-0b938c11d1c8",
+                            ConcurrencyStamp = "a785a628-f129-42dd-9b21-025e57a79367",
                             Name = "Visitor",
                             NormalizedName = "VISITOR"
                         },
                         new
                         {
-                            Id = "533f9cc8-b784-4fc2-955f-ab286e14f8a7",
-                            ConcurrencyStamp = "64f7da82-6589-45e9-b704-a59cfb2f5f78",
+                            Id = "a60b9d70-0105-43c6-8db5-09e986f5281e",
+                            ConcurrencyStamp = "3e5e7e66-df8e-49c6-b8cb-1f903847b2d2",
                             Name = "Teacher",
                             NormalizedName = "TEACHER"
                         },
                         new
                         {
-                            Id = "0c5a8c12-cdf2-40ef-b89f-f5238e5490f3",
-                            ConcurrencyStamp = "270e990e-f16d-4edf-a51d-2909687bc7f4",
+                            Id = "2960cb2a-132a-4321-82cd-77630e90a7c9",
+                            ConcurrencyStamp = "e1ab531d-d555-4e30-b894-7c4ea91c6022",
                             Name = "Student",
                             NormalizedName = "STUDENT"
+                        },
+                        new
+                        {
+                            Id = "f1087965-f05a-443d-a0b7-fe500bf2e14b",
+                            ConcurrencyStamp = "6c930be7-c537-4517-9c30-390c2ccafe6e",
+                            Name = "Administrator",
+                            NormalizedName = "ADMINISTRATOR"
                         });
                 });
 
@@ -178,6 +178,30 @@ namespace TheTuter.Migrations
                     b.HasKey("UserId", "LoginProvider", "Name");
 
                     b.ToTable("AspNetUserTokens");
+                });
+
+            modelBuilder.Entity("TheTuter.Models.ContactUs", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Email")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("FullName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Message")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Phone")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Contacts");
                 });
 
             modelBuilder.Entity("TheTuter.Models.Course", b =>

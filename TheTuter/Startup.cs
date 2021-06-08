@@ -36,9 +36,11 @@ namespace TheTuter
             services.AddSession();
             services.AddDbContext<ApplicationDbContext>(opt =>
             opt.UseSqlServer(Configuration.GetConnectionString("ApplicationDbContext")));
-            services.AddSwaggerGen();
+
             services.AddIdentity<User, IdentityRole>
                 ().AddEntityFrameworkStores<ApplicationDbContext>();
+            
+                        
             services.Configure<IdentityOptions>(options =>
             {
                 options.Password.RequireDigit = false;
@@ -75,16 +77,12 @@ namespace TheTuter
 
             IMapper mapper = mappingConfig.CreateMapper();
             services.AddSingleton(mapper);
+            //services.AddSwaggerGen();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-            app.UseSwagger();
-            app.UseSwaggerUI(c =>
-            {
-                c.SwaggerEndpoint("/swagger/v1/swagger.json", "The Tutor API");
-            });
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -102,23 +100,29 @@ namespace TheTuter
                 .SetIsOriginAllowed(origin => true) // allow any origin
                 .AllowCredentials()); // allow credentials
 
+           /* app.UseSwagger();
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "The Tutor API");
+            });*/
 
             app.UseHttpsRedirection();
-            app.UseStaticFiles();
             app.UseSession();
+            app.UseStaticFiles();
             app.UseRouting();
             app.UseDefaultFiles();
-            app.UseStaticFiles();
+            
             // Required for Authentication.
             app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {
+                endpoints.MapControllers();
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
-                endpoints.MapFallbackToController("Index", "Fallback");
+                    pattern: "{controller=Fallback}/{action=Index}/{id?}");
+                //endpoints.MapFallbackToController("Index", "Fallback");
             });
         }
     }
